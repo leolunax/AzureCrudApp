@@ -79,3 +79,4 @@ namespace AzureCrudApp.Controllers
             return NoContent();
         }
     }
+}
