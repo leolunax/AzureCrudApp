@@ -20,14 +20,14 @@ namespace AzureCrudApp.Controllers
         [HttpGet]
         public async Task<ActionResult<IEnumerable<Item>>> GetItems()
         {
-            return await _context.Items.ToListAsync();
+            return await _context.Item.ToListAsync();
         }
 
         // GET: api/Items/5
         [HttpGet("{id}")]
         public async Task<ActionResult<Item>> GetItem(int id)
         {
-            var item = await _context.Items.FindAsync(id);
+            var item = await _context.Item.FindAsync(id);
 
             if (item == null)
             {
@@ -41,7 +41,7 @@ namespace AzureCrudApp.Controllers
         [HttpPost]
         public async Task<ActionResult<Item>> PostItem(Item item)
         {
-            _context.Items.Add(item);
+            _context.Item.Add(item);
             await _context.SaveChangesAsync();
 
             return CreatedAtAction(nameof(GetItem), new { id = item.Id }, item);
@@ -67,13 +67,13 @@ namespace AzureCrudApp.Controllers
         [HttpDelete("{id}")]
         public async Task<IActionResult> DeleteItem(int id)
         {
-            var item = await _context.Items.FindAsync(id);
+            var item = await _context.Item.FindAsync(id);
             if (item == null)
             {
                 return NotFound();
             }
 
-            _context.Items.Remove(item);
+            _context.Item.Remove(item);
             await _context.SaveChangesAsync();
 
             return NoContent();
